@@ -1,13 +1,8 @@
 function processOddPositions(array) {
-    let result = [];
+    let oddNumbers = array.filter((x) => x % 2 == 1);
+    let doubledNumbers = oddNumbers.map((x) => x * 2);
+    doubledNumbers.reverse();
 
-    for (let i = 0; i < array.length; i++) {
-        if (i % 2 == 1) {
-            result.push(array[i]);
-        }
-    }
-
-    let doubledNumbers = result.map((e) => e * 2).reverse();
     console.log(doubledNumbers.join(" "));
 }
 
