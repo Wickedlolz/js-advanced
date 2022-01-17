@@ -1,13 +1,6 @@
 function biggestElement(array) {
-    let biggestNumbers = [];
-
-    for (let element of array) {
-        let maxNumber = Math.max(...element);
-        biggestNumbers.push(maxNumber);
-    }
-
-    let biggest = Math.max(...biggestNumbers);
-    return biggest;
+    let biggestNumbers = array.map((arr) => Math.max(...arr));
+    return Math.max(...biggestNumbers);
 }
 
 console.log(
