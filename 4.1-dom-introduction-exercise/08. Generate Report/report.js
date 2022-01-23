@@ -1,33 +1,37 @@
 function generateReport() {
-    const headerArray = Array.from(document.getElementsByTagName('input'));
-    const objArray = [];
-    const bodyArray = Array.from(document.getElementsByTagName('tr'));
-    const checkedCols = [];
+    document.querySelector('#output').value = '';
+    const theadElements = Array.from(
+        document.querySelectorAll('table thead tr th')
+    );
+    const tbodyElements = Array.from(
+        document.querySelectorAll('table tbody tr')
+    );
 
-    for (let i = 0; i < bodyArray.length; i++) {
-        let currentRow = bodyArray[i];
-        const obj = {};
+    let result = [];
+    let isCheckedElements = [];
 
-        for (let j = 0; j < currentRow.children.length; j++) {
-            const element = currentRow.children[j];
+    for (let i = 0; i < theadElements.length; i++) {
+        let isChecked = theadElements[i].querySelector('input').checked;
 
-            if (i == 0) {
-                if (element.children[0].checked) {
-                    checkedCols.push(j);
-                }
-                continue;
-            }
-
-            if (checkedCols.includes(j)) {
-                let propName = headerArray[j].name;
-                obj[propName] = element.textContent;
-            }
-        }
-
-        if (i !== 0) {
-            objArray.push(obj);
+        if (isChecked) {
+            isCheckedElements.push({ element: theadElements[i], index: i });
         }
     }
 
-    document.getElementById('output').value = JSON.stringify(objArray);
+    for (let i = 0; i < tbodyElements.length; i++) {
+        let element = {};
+        for (let j = 0; j < isCheckedElements.length; j++) {
+            let propName = isCheckedElements[j].element.textContent
+                .trim()
+                .toLocaleLowerCase();
+            element[propName] =
+                tbodyElements[i].children[
+                    isCheckedElements[j].index
+                ].textContent;
+        }
+
+        result.push(element);
+    }
+
+    document.querySelector('#output').value = JSON.stringify(result);
 }
