@@ -1,3 +1,12 @@
 function attachEventsListeners() {
-    console.log('TODO:...');
+    const rations = {
+        kilometers: () => {},
+        meters: () => {},
+        centimeters: () => {},
+        millimeters: () => {},
+        miles: () => {},
+        yards: () => {},
+        feet: () => {},
+        inches: () => {},
+    };
 }
