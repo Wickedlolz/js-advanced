@@ -1,6 +1,6 @@
-function createFormatter(separator, symbol, symbolFirst, value) {
+function createFormatter(separator, symbol, symbolFirst, currencyFormatter) {
     return (number) => {
-        return value(separator, symbol, symbolFirst, number);
+        return currencyFormatter(separator, symbol, symbolFirst, number);
     };
 }
 
