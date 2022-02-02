@@ -19,11 +19,26 @@ describe('Calculator Checker', () => {
         expect(calc.get()).to.be.equal(5);
     });
 
-    it('Testing if from sum 10 subtract 5 and returns 5', () => {
+    it('Testing add and subtract', () => {
         let calc = createCalculator();
         calc.add(10);
+        calc.add(15);
         calc.subtract(5);
 
-        expect(calc.get()).to.be.equal(5);
+        expect(calc.get()).to.be.equal(20);
+    });
+
+    it('Testing with different types param', () => {
+        let calc = createCalculator();
+        calc.add('test');
+        calc.add({});
+        calc.add([]);
+
+        expect(calc.get()).to.be.NaN;
+    });
+
+    it('Testing if internal sum is 0 whithout adding or subtract', () => {
+        let calc = createCalculator();
+        expect(calc.get()).to.be.equal(0);
     });
 });

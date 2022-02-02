@@ -12,5 +12,5 @@ function createCalculator() {
         },
     };
 }
-console.log('asd');
+
 module.exports = createCalculator;
