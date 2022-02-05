@@ -28,14 +28,14 @@ function validate() {
         let passwordPattern = /^[\w_]{5,15}$/g;
         let confirmPassPattern = /^[\w_]{5,15}$/g;
         let emailPattern = /.*@.*\..*/g;
-        let isEveryFieldValid = false;
+        let isEveryFieldValid = [];
 
         if (!usernameField.value.match(usernamePattern)) {
             usernameField.style.borderColor = 'red';
-            isEveryFieldValid = false;
+            isEveryFieldValid.push(false);
         } else {
             usernameField.style.border = 'none';
-            isEveryFieldValid = true;
+            isEveryFieldValid.push(true);
         }
 
         if (
@@ -45,19 +45,19 @@ function validate() {
         ) {
             passwordField.style.border = 'none';
             confirmPassField.style.border = 'none';
-            isEveryFieldValid = true;
+            isEveryFieldValid.push(true);
         } else {
             passwordField.style.borderColor = 'red';
             confirmPassField.style.borderColor = 'red';
-            isEveryFieldValid = false;
+            isEveryFieldValid.push(false);
         }
 
         if (!emailField.value.match(emailPattern)) {
             emailField.style.borderColor = 'red';
-            isEveryFieldValid = false;
+            isEveryFieldValid.push(false);
         } else {
             emailField.style.border = 'none';
-            isEveryFieldValid = true;
+            isEveryFieldValid.push(true);
         }
 
         if (checkbox.checked) {
@@ -66,14 +66,14 @@ function validate() {
                 Number(companyNumberField.value) <= 9999
             ) {
                 companyNumberField.style.border = 'none';
-                isEveryFieldValid = true;
+                isEveryFieldValid.push(true);
             } else {
                 companyNumberField.style.borderColor = 'red';
-                isEveryFieldValid = false;
+                isEveryFieldValid.push(false);
             }
         }
 
-        if (isEveryFieldValid) {
+        if (isEveryFieldValid.includes(false) == false) {
             validSection.style.display = 'block';
         } else {
             validSection.style.display = 'none';
