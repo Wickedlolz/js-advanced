@@ -1,9 +1,25 @@
-function person(first, last) {
-    this.fistName = first;
-    this.last = last;
+function Person(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
 
     Object.defineProperty(this, 'fullName', {
-        set: function (value) {},
-        get: function () {},
+        get: function () {
+            return `${this.firstName} ${this.lastName}`;
+        },
+        set: function (values) {
+            let [first, last] = values.split(' ');
+            this.firstName = first;
+            this.lastName = last;
+        },
     });
 }
+
+let person = new Person('Peter', 'Ivanov');
+console.log(person.fullName); //Peter Ivanov
+person.firstName = 'George';
+console.log(person.fullName); //George Ivanov
+person.lastName = 'Peterson';
+console.log(person.fullName); //George Peterson
+person.fullName = 'Nikola Tesla';
+console.log(person.firstName); //Nikola
+console.log(person.lastName); //Tesla
