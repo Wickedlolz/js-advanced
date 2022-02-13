@@ -70,6 +70,10 @@ describe('Tests …', function () {
             expect(() =>
                 repository.add({ name: 2, age: 22, birthday: {} })
             ).to.throw();
+
+            expect(() =>
+                repository.add({ name: [], age: NaN, birthday: {} })
+            ).to.throw();
         });
     });
 
@@ -92,6 +96,7 @@ describe('Tests …', function () {
             repository.add(entity2);
 
             expect(repository.getId(1)).to.be.equal(entity2);
+            expect(repository.getId(0)).to.be.equal(entity1);
         });
 
         it('Testing if ID does not exist', () => {
@@ -139,6 +144,7 @@ describe('Tests …', function () {
 
         it('Testing if ID not exist', () => {
             expect(() => repository.del(2)).to.throw();
+            expect(() => repository.del(-2)).to.throw();
         });
 
         it('Testing if delete correcly.', () => {
