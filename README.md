@@ -6,4 +6,4 @@ SoftUni JavaScript Advanced - Homework
 ## Successfully complete course
 - [x] **JS Advanced**
 
-[certificate]()
+[certificate](https://softuni.bg/certificates/details/127825/75567a88)
